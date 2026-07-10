@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "222037946309",
+    "project_id": "batch3-cc5f8",
+    "storage_bucket": "batch3-cc5f8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222037946309:android:9b8c5f0db2e9ed54e7e5ac",
+        "android_client_info": {
+          "package_name": "com.batchh3.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222037946309-e8hpqjukiv3kgtqaplmva5bqhkejnqoe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.batchh3.app",
+            "certificate_hash": "e8b1b099065f2f5dde1c889427579e8f86b3392f"
+          }
+        },
+        {
+          "client_id": "222037946309-eh4cm3mq3873tkojit0l7ofemah9a6pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApaKHQJ_DxX4ZkcCZ-H6ksbQ-gBPGUVTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222037946309-eh4cm3mq3873tkojit0l7ofemah9a6pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "222037946309-nkjulu42u1p1g7glo7n527ndu1nqou59.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.batchh3.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222037946309:android:0ff9e5af2be37cb9e7e5ac",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222037946309-eh4cm3mq3873tkojit0l7ofemah9a6pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApaKHQJ_DxX4ZkcCZ-H6ksbQ-gBPGUVTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222037946309-eh4cm3mq3873tkojit0l7ofemah9a6pf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "222037946309-nkjulu42u1p1g7glo7n527ndu1nqou59.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.batchh3.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
