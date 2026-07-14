@@ -1,35 +1,94 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/auth/services/auth_service.dart';
-import 'package:flutter_application_3/auth/views/login.dart';
-import 'package:flutter_application_3/pages/home/services/user_service.dart';
+import 'package:flutter_application_3/pages/home/services/todo_service.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    AuthService authService = AuthService();
-    UserService userService = UserService();
-    FirebaseAuth auth = FirebaseAuth.instance;
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(onPressed: () async{
-            await authService.logOut().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),)),);
-            
-          }, icon: Icon(Icons.logout))
-        ],
-      ),
-      backgroundColor: Colors.red,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+  State<Home> createState() => _HomeState();
+}
 
-          Text(auth.currentUser!.email.toString()),
-          
-        ],
-      ));
+class _HomeState extends State<Home> {
+  //
+
+  TodoService todoService = TodoService();
+
+  final todoController = TextEditingController();
+
+  //
+
+  void myDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                todoService.addTodoTask(todoController.text);
+              },
+              child: Text("Add"),
+            ),
+          ],
+
+          content: Column(
+            children: [
+              //
+              TextField(controller: todoController),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder(
+        future: todoService.fetchTodos(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          final data = snapshot.data!;
+          return ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              //
+
+              final todo = data[index];
+
+              return ListTile(
+                title: Text(todo.title),
+                leading: Checkbox(
+                  value: todo.isDone,
+                  onChanged: (value) {
+                 setState(() {
+                todoService.toggleTodoTask(todo) ;
+                 });
+                  },
+                ),
+              );
+            },
+          );
+        },
+      ),
+
+      //
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          myDialog();
+        },
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }

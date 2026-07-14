@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_3/auth/auth_wrapper.dart';
-import 'package:flutter_application_3/auth/views/login.dart';
 import 'package:flutter_application_3/firebase_options.dart';
 
 void main() async {
