@@ -4,7 +4,7 @@ import 'package:flutter_application_3/auth/views/forgot_password.dart';
 import 'package:flutter_application_3/auth/views/sign_up.dart';
 import 'package:flutter_application_3/auth/widgets/custom_button.dart';
 import 'package:flutter_application_3/auth/widgets/custom_textform_field.dart';
-import 'package:flutter_application_3/pages/home.dart';
+import 'package:flutter_application_3/pages/home/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

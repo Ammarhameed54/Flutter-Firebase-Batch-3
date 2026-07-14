@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/auth/services/auth_service.dart';
 import 'package:flutter_application_3/auth/views/login.dart';
+import 'package:flutter_application_3/pages/home/services/user_service.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -8,6 +10,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthService authService = AuthService();
+    UserService userService = UserService();
+    FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -20,13 +24,12 @@ class Home extends StatelessWidget {
       ),
       backgroundColor: Colors.red,
       body: Column(
-        
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //
-          Center(child: Text("Home", style: TextStyle(color: Colors.white),))
+
+          Text(auth.currentUser!.email.toString()),
+          
         ],
-      ),
-    );
+      ));
   }
 }
