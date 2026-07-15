@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_3/auth/auth_wrapper.dart';
 import 'package:flutter_application_3/firebase_options.dart';
+import 'package:flutter_application_3/pages/Notes/views/notes_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
-      home: const AuthWrapper(),
+//      home: const AuthWrapper(),
+      home: const NotesHome(),
     );
   }
 }

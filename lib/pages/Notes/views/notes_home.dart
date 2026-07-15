@@ -16,45 +16,54 @@ class _NotesHomeState extends State<NotesHome> {
 
   final titleController = TextEditingController();
 
+  final key = GlobalKey();
 
   //
 
-  void myDialog(TextEditingController titleController){
-    showDialog(context: context, builder: (context) {
-      return AlertDialog(
-        content: Padding(
-          padding:  EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              //
-              TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.note),
-                  border: OutlineInputBorder()
+  void myDialog(TextEditingController titleController) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                //
+                TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.note),
+                    border: OutlineInputBorder(),
+                  ),
+                  controller: titleController,
                 ),
-                controller: titleController,
-              )
-            ],
+              ],
+            ),
           ),
-        ),
-
-        //
-        actions: [
-          TextButton(onPressed: () {
-            Navigator.pop(context);
-          }, child: Text("Cancel")),
 
           //
+          actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(titleController.text.isEmpty ? "Add" : "Update"),
-            )
-        ],
-      );
-    },);
+              child: Text("Cancel"),
+            ),
+
+            //
+            TextButton(
+              onPressed: () async {
+                
+                await notesService.addNote(titleController.text);
+              },
+              child: Text("Add" ),
+            ),
+          ],
+        );
+      },
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,15 +86,24 @@ class _NotesHomeState extends State<NotesHome> {
               //
 
               final note = data[index];
-              return ListTile(
-                //
-                title: Text(note.title),
+              return Dismissible(
+                key: ValueKey(note.id),
+                confirmDismiss: (direction) async{
+                
+                  await notesService.deleteNote(note);
+                },
+                child: ListTile(
+                  //
+                  title: Text(note.title),
 
-                //
-
-                trailing: IconButton(onPressed: () {
-                  myDialog(titleController);
-                }, icon: Icon(Icons.edit)),
+                  //
+                  trailing: IconButton(
+                    onPressed: () {
+                      myDialog(titleController);
+                    },
+                    icon: Icon(Icons.edit),
+                  ),
+                ),
               );
             },
           );
@@ -93,10 +111,12 @@ class _NotesHomeState extends State<NotesHome> {
       ),
 
       //
-
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        myDialog(titleController);
-      }, child: Icon(Icons.add),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          myDialog(titleController);
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
