@@ -18,7 +18,7 @@ class TodoService {
 
   //
 
-  void toggleTodoTask(TodoModel todo) async {
+  Future<void> toggleTodoTask(TodoModel todo) async {
     await firestore.collection('todos').doc(todo.id).update({
       'isDone': !todo.isDone,
     });

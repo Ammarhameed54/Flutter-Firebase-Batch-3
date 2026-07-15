@@ -70,9 +70,9 @@ class _HomeState extends State<Home> {
                 title: Text(todo.title),
                 leading: Checkbox(
                   value: todo.isDone,
-                  onChanged: (value) {
-                 setState(() {
-                todoService.toggleTodoTask(todo) ;
+                  onChanged: (value) async{
+                 setState(() async{
+               await todoService.toggleTodoTask(todo) ;
                  });
                   },
                 ),
