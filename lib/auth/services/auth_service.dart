@@ -78,6 +78,7 @@ class AuthService {
       await firestore.collection('users').doc(userId).set({
         'email' : userEmail,
         'createdAt' : DateTime.now(),
+        'role' : 'user'
 
         // 'firstName': firstName,
         // 'lastName': lastName,

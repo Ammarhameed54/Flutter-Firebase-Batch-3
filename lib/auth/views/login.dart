@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/auth/auth_wrapper.dart';
 import 'package:flutter_application_3/auth/services/auth_service.dart';
 import 'package:flutter_application_3/auth/views/forgot_password.dart';
 import 'package:flutter_application_3/auth/views/sign_up.dart';
@@ -88,7 +89,7 @@ class _LoginState extends State<Login> {
                       .then(
                         (value) => Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          MaterialPageRoute(builder: (context) => AuthWrapper()),
                         ),
                       );
                 },

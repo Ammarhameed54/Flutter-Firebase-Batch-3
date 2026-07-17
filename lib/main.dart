@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         );
       },
 //      home: const AuthWrapper(),
-      home: const NotesHome(),
+      home: AuthWrapper(),
     );
   }
 }
