@@ -67,8 +67,16 @@ class _NotesHomeState extends State<NotesHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<NotesModel>>(
-        future: notesService.fetchNotes(),
+      // body: FutureBuilder<List<NotesModel>>(
+      //   future: notesService.fetchNotes(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.connectionState == ConnectionState.waiting) {
+      //       return CircularProgressIndicator();
+      //     }
+
+
+       body: StreamBuilder<List<NotesModel>>(
+        stream: notesService.fetchNotesStream(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();

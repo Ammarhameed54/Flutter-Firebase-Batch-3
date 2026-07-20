@@ -18,12 +18,13 @@ class AuthWrapper extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
 
-        final user = snapshot.data!.uid;
+   
 
         // Check if already Logged in
 
-        if (snapshot.hasData) {
+        if (snapshot.hasData && snapshot.data != null) {
           // Fetch USer id
+               final user = snapshot.data!.uid;
 
           return FutureBuilder(
             future: FirebaseFirestore.instance
@@ -39,19 +40,13 @@ class AuthWrapper extends StatelessWidget {
 
               final role = usersnapshot.data!.get('role') ?? "user";
 
-              // if (role == "admin") {
-              //   return AdminHome();
-              // } else {
-              //   return UserHome();
-              // }
-
               if (role == "admin") {
                 return AdminHome();
-              } else if( role == 'employee'){
+              } else {
                 return UserHome();
-              } else{
-                return Home();
               }
+
+            
             },
           );
         }
